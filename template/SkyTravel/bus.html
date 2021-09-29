@@ -1,0 +1,148 @@
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand text-warning" href="#">Sky Travel</a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/mytrip-air/">Air Trip <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/mytrip-bus/">Bus Trip <span class="sr-only">(current)</span></a>
+      </li>
+      
+    </ul>
+      <a href="/log-out/"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log-Out</button></a>
+  </div>
+</nav>
+<style>
+.pricingTable{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 0 10px;
+    position: relative;
+    z-index: 1;
+}
+.pricingTable:before{
+    content: '';
+    background-color: #1c3340;
+    border-radius: 30px;
+    position: absolute;
+    left: 0;
+    top: 30px;
+    bottom: 20px;
+    right: 0;
+    z-index: -1;
+}
+.pricingTable .pricingTable-header{
+    color: #fff;
+    background: #F55C78;
+    width: 80%;
+    padding: 30px 10px 40px;
+    margin: 0 auto 30px;
+    border-radius: 20px 20px 0 0;
+    border-bottom: 7px solid #052130;
+}
+.pricingTable .title{
+    font-size: 35px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0;
+}
+.pricingTable .price-value{
+    color: #F55C78;
+    background: #fff;
+    font-size: 45px;
+    font-weight: 600;
+    width: 100px;
+    height: 100px;
+    line-height: 103px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+}
+.pricingTable .pricing-content{
+    padding: 0;
+    margin: 0 0 25px;
+    list-style: none;
+    display: inline-block;
+}
+.pricingTable .pricing-content li{
+    color: #fff;
+    font-size: 17px;
+    line-height: 43px;
+    text-transform: uppercase;
+    padding: 0 10px;
+    border-bottom: 1px solid #fff;
+}
+.pricingTable .pricing-content li:last-child{ border-bottom: none; }
+.pricingTable .pricingTable-signup a{
+    color: #fff;
+    background: #F55C78;
+    font-size: 23px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 7px 18px 5px;
+    border-radius: 15px;
+    display: inline-block;
+    transition: all 0.3s;
+}
+.pricingTable .pricingTable-signup a:hover{
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 5px #1c3340;
+}
+.pricingTable.blue .pricingTable-header,
+.pricingTable.blue .pricingTable-signup a{
+    background: #239EFE;
+}
+.pricingTable.blue .price-value{ color: #239EFE; }
+.pricingTable.purple .pricingTable-header,
+.pricingTable.purple .pricingTable-signup a{
+    background: #744EA5;
+}
+.pricingTable.purple .price-value{ color: #744EA5; }
+@media only screen and (max-width: 990px){
+    .pricingTable{ margin: 0 0 40px; }
+}
+License Terms 
+
+</style>
+<div class="demo  mt-5 mb-5">
+    <div class="container">
+        <div class="row">
+           {% for air in buschart %}
+            <div class="col-md-4 col-sm-6 mb-5">
+                <div class="pricingTable green">
+                    <div class="pricingTable-header">
+                        <h3>{{air.fromP}} <br> to <br> {{air.toP}}</h3>
+                    </div>
+                    <div class="mb-3">
+                        <span class="title text-warning">${{air.adultcost}}</span>
+                    </div>
+                    <ul class="pricing-content">
+                        <li>Departure Time: {{air.departure}}</li>
+                        <li>Arival Time: {{air.arival}}</li>
+                        <li>50% off for Children (2-15 Years Old)</li>
+                        <li>100% off for Babies (Under 2 Years old)</li>
+                    </ul>
+                    <div class="pricingTable-signup">
+                        <a href="/book-trip/air/{{air.id}}">Book Now</a>
+                    </div>
+                </div>
+            </div>
+			{% endfor %}
+        </div>
+    </div>
+</div>
+
